@@ -1,6 +1,7 @@
 /* set the mode to development */
 
 import webpack from 'webpack';
+import Jarvis from 'webpack-jarvis';
 
 import paths from './paths';
 import rules from './rules';
@@ -11,9 +12,6 @@ module.exports = {
         filename: '[name].js',
         path: paths.outputPath,
         chunkFilename: '[name].js'
-    },
-    module: {
-        rules
     },
     performance: {
         hints: 'warning',
@@ -37,6 +35,9 @@ module.exports = {
         historyApiFallback: true
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new Jarvis({
+            port: 1337
+        })
     ]
 };
